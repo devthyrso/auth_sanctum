@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
     public function login(Request $request)
     {
         $request->validate([
@@ -27,8 +22,15 @@ class LoginController extends Controller
         return response()->json(['error' => 'Credenciais inválidas'], 401);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->user()->currentAccessToken()->delete();
+        $user = $request->user();
+
+        if ($user) {
+            $user->tokens()->delete();
+            auth()->logout();
+        }
+
+        return response()->json(['message' => 'Logout realizado com sucesso.'], 200);
     }
 }

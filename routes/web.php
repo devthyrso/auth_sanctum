@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +18,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-// Route::post('/register', [AuthController::class, 'register']);
+Route::prefix('auth')->group(function () {
+    Route::get('login', function () {
+        return view('auth.login');
+    })->name('login');
+});
 
-// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [AuthController::class, 'login']);
+Route::prefix('auth')->group(function () {
+    Route::get('register', function () {
+        return view('auth.register');
+    })->name('register');
+});
 
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth:sanctum');
+
+Route::get('/home', function () {
+    return view('home');
+})->middleware('auth:sanctum');
+
+Route::get('/users/{user}/edit', function (User $user) {
+    return view('users.edit', compact('user'));
+})->name('users.edit')->middleware('auth:sanctum');
 

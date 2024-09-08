@@ -24,21 +24,23 @@
                         <form id="loginForm" method="POST">
                             @csrf
 
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label class="col-md-4 col-form-label text-md-end" for="email">E-mail:</label>
-                                    <input class="form-control" type="email" name="email" id="email" required>
+                            <div class="mb-3 row">
+                                <label for="email" class="col-sm-3 col-form-label">E-mail</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="email" name="email" id="email"
+                                        value="{{ old('email') }}" required>
                                 </div>
                             </div>
-                            <div>
-                                <div class="row mb-3">
-                                    <label class="col-md-4 col-form-label text-md-end" for="password">Senha:</label>
-                                    <input class="form-control" type="password" name="password" id="password" required>
+                            <div class="mb-3 row">
+                                <label for="password" class="col-sm-3 col-form-label">Senha</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="password" name="password" id="password"
+                                        required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-md-6 offset-md-3">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 

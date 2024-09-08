@@ -21,11 +21,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('auth')->group(function() {
-    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::prefix('auth')->group(function () {
     Route::post('login', [LoginController::class, 'login']);
     Route::post('logout', [LoginController::class, 'logout']);
 
     Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
     Route::post('register', [RegisterController::class, 'register']);
 });
+
+Route::prefix('home')->group(function () {
+    Route::get('/users', [HomeController::class, 'index']);
+    Route::put('/users/{user}', [HomeController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [HomeController::class, 'destroy'])->name('users.destroy');
+})->middleware('auth:sanctum');

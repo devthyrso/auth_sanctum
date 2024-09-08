@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function showRegisterForm()
-    {
-        return view('auth.register');
-    }
-
     public function register(Request $request)
     {
         $request->validate([
@@ -40,6 +35,6 @@ class RegisterController extends Controller
             'cep' => $request->cep,
         ]);
 
-        return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso!');
+        return redirect()->to('http://127.0.0.1:8000/auth/login')->with('success', 'Cadastro realizado com sucesso!');
     }
 }

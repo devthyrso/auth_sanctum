@@ -14,112 +14,102 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header"> Registro </div>
+                    <div class="card-header">Registro</div>
                     <div class="card-body">
                         <form id="registerForm">
                             @csrf
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="name" class="col-form-label">Nome Completo</label>
-                                </div>
-                                <div class="col-auto">
+                            <div class="mb-3 row">
+                                <label for="name" class="col-sm-3 col-form-label">Nome Completo</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" type="text" name="name" id="name"
                                         value="{{ old('name') }}" required>
                                 </div>
                             </div>
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="email" class="col-form-label">E-mail</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input class="form-control" type="text" name="email" id="email"
+
+                            <div class="mb-3 row">
+                                <label for="email" class="col-sm-3 col-form-label">E-mail</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="email" name="email" id="email"
                                         value="{{ old('email') }}" required>
                                 </div>
                             </div>
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="password" class="col-form-label">Senha</label>
-                                </div>
-                                <div class="col-auto">
+
+                            <div class="mb-3 row">
+                                <label for="password" class="col-sm-3 col-form-label">Senha</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" type="password" name="password" id="password"
-                                        value="{{ old('password') }}" required>
-                                </div>
-                            </div>
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="password_confirmation" class="col-form-label">Confirmar Senha</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input class="form-control" type="password" name="password_confirmation"
-                                        id="password_confirmation" value="{{ old('password_confirmation') }}" required>
-                                </div>
-                            </div>
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="cep" class="col-form-label">CEP</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input class="form-control" type="text" name="cep" id="cep" value="{{ old('cep') }}"
                                         required>
                                 </div>
                             </div>
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="rua" class="col-form-label">Rua</label>
+
+                            <div class="mb-3 row">
+                                <label for="password_confirmation" class="col-sm-3 col-form-label">Confirmar Senha</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="password" name="password_confirmation"
+                                        id="password_confirmation" required>
                                 </div>
-                                <div class="col-auto">
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="mb-3 row">
+                                <label for="cep" class="col-sm-3 col-form-label">CEP</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="cep" id="cep" value="{{ old('cep') }}"
+                                        required onBlur="buscarEndereco()" pattern="\d{8,9}" inputmode="numeric">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="rua" class="col-sm-3 col-form-label">Rua</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" type="text" name="rua" id="rua" value="{{ old('rua') }}"
                                         required>
                                 </div>
                             </div>
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="bairro" class="col-form-label">Bairro</label>
-                                </div>
-                                <div class="col-auto">
+
+                            <div class="mb-3 row">
+                                <label for="bairro" class="col-sm-3 col-form-label">Bairro</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" type="text" name="bairro" id="bairro"
                                         value="{{ old('bairro') }}" required>
                                 </div>
                             </div>
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="numero" class="col-form-label">Número</label>
-                                </div>
-                                <div class="col-auto">
+
+                            <div class="mb-3 row">
+                                <label for="numero" class="col-sm-3 col-form-label">Número</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" type="number" name="numero" id="numero"
-                                        value="{{ old('numero') }}" required>
+                                        value="{{ old('numero') }}" required inputmode="numeric">
                                 </div>
                             </div>
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="cidade" class="col-form-label">Cidade</label>
-                                </div>
-                                <div class="col-auto">
+
+                            <div class="mb-3 row">
+                                <label for="cidade" class="col-sm-3 col-form-label">Cidade</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" type="text" name="cidade" id="cidade"
                                         value="{{ old('cidade') }}" required>
                                 </div>
                             </div>
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="estado" class="col-form-label">Estado</label>
-                                </div>
-                                <div class="col-auto">
+
+                            <div class="mb-3 row">
+                                <label for="estado" class="col-sm-3 col-form-label">Estado</label>
+                                <div class="col-sm-9">
                                     <input class="form-control" type="text" name="estado" id="estado"
                                         value="{{ old('estado') }}" required>
                                 </div>
                             </div>
+
                             <button type="submit" class="btn btn-primary">Cadastrar</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -131,12 +121,12 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         $('#registerForm').on('submit', function (e) {
             e.preventDefault();
 
@@ -146,7 +136,7 @@
                 data: $(this).serialize(),
                 success: function (response) {
                     alert('Cadastro realizado com sucesso! Redirecionando para o login...');
-                    window.location.href = '/login';
+                    window.location.href = '/auth/login';
                 },
                 error: function (response) {
                     alert('Erro: ' + response.responseJSON.message);
