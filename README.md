@@ -13,11 +13,21 @@ Node.js: 18.8
 4. Execute `php artisan migrate` para rodar as migrações.
 5. Instale o Sanctum com `composer require laravel/sanctum` e configure conforme o guia.
 6. Inicie o servidor com `php artisan serve`.
+7. Para funcionar a função de resetar senha, deve-se atualizar as seguintes linhas no .env:
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=3ed90076441964
+MAIL_PASSWORD=3eeafffca0b8f2
+
+Usei o https://mailtrap.io/ para testar, e as credenciais acima, são as da minha conta, crie uma e use as suas para testar.
 
 ## Funcionalidades
 
 - **Cadastro de Usuários** com validação de CEP e integração com API ViaCEP.
 - **Login e Autenticação** utilizando tokens do Sanctum.
+- **Recuperação de Senha** com envio de e-mail.
 - **Página Home** mostrando todos os usuários cadastrados.
 
 ## Estrutura do Código
