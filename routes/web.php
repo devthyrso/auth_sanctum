@@ -39,3 +39,10 @@ Route::get('/users/{user}/edit', function (User $user) {
     return view('users.edit', compact('user'));
 })->name('users.edit')->middleware('auth:sanctum');
 
+Route::get('password/reset', function () {
+    return view('auth.passwords.email');
+})->name('password.request');
+
+Route::get('password/reset/{token}', function ($token) {
+    return view('auth.passwords.reset', ['token' => $token]);
+})->name('password.reset');

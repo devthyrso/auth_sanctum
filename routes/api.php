@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Api\LoginController;
 use App\Http\Controllers\Auth\Api\RegisterController;
+use App\Http\Controllers\Auth\Api\ForgotPasswordController;
+use App\Http\Controllers\Auth\Api\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -28,6 +30,9 @@ Route::prefix('auth')->group(function () {
     Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
     Route::post('register', [RegisterController::class, 'register']);
 });
+
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::post('password/reset/{token}', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 Route::prefix('home')->group(function () {
     Route::get('/users', [HomeController::class, 'index']);

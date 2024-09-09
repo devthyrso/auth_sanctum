@@ -39,14 +39,10 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            <div class="row mb-4">
                                 <div class="col-md-6 offset-md-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                        <label class="form-check-label" for="remember">
-                                            Lembrar-me
-                                        </label>
+                                        <a href="{{ route('password.request') }}" class="btn btn-link">Esqueceu a senha?</a>
                                     </div>
                                 </div>
                             </div>
